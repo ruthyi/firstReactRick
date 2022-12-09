@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Character from './Character';
 
 function NavPage(props) {
-    if (props.page > 1 && props.page<43) {
+    if (props.page > 1 && props.page<42) {
         return (
             <header className='d-flex justify-content-between align-items-center'>
                 <p>
@@ -22,7 +22,7 @@ function NavPage(props) {
 
             </header>
         );
-    } else if(props.page<43) {
+    } else if(props.page<42) {
         return (
 
             <header className='d-flex justify-content-between align-items-center'>
