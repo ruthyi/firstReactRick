@@ -1,19 +1,52 @@
 import { useEffect, useState } from 'react';
 import Character from './Character';
 
-function NavPage(props){
-    return(
-        <header className='d-flex justify-content-between align-items-center'>
-            <p>
-                Page: {props.page}
-            </p>
-            <button className='btn btn-primary btn-sm'
-             onClick={()=> props.setPage(props.page+1)}
-            >
-                Page {props.page+1}
-            </button>
-        </header>
-    );
+function NavPage(props) {
+    if (props.page > 1) {
+        return (
+            <header className='d-flex justify-content-between align-items-center'>
+                <p>
+                    Actual Page: {props.page}
+                </p>
+                <div>
+                    <button className='btn btn-primary btn-sm m-2'
+                        onClick={() => props.setPage(props.page - 1)}>
+                        Page {props.page - 1}
+                    </button>
+                    <button className='btn btn-primary btn-sm m-2'
+                        onClick={() => props.setPage(props.page + 1)}
+                    >
+                        Page {props.page + 1}
+                    </button>
+                </div>
+
+            </header>
+        );
+    } else {
+        return (
+
+            <header className='d-flex justify-content-between align-items-center'>
+                <p>
+                    Actual Page: {props.page}
+                </p>
+                <div>
+                    <button className='btn btn-primary btn-sm m-2' onClick={() => console.log("Entro")}>
+                        Page {props.page}
+                    </button>
+                    <button className='btn btn-primary btn-sm m-2'
+                        onClick={() => props.setPage(props.page + 1)}
+                    >
+                        Page {props.page + 1}
+                    </button>
+
+                </div>
+
+            </header>
+        );
+
+    }
+
+
 }
 function CharacterList() {
     const [characters, setCharacter] = useState([]);
@@ -34,32 +67,32 @@ function CharacterList() {
         fetchData();
     }, [page]);
 
-   
+
 
     return (
-       
+
         <div className='container ' >
 
-        <NavPage page={page} setPage={setPage}/>
+            <NavPage page={page} setPage={setPage} />
 
-            { loading ?(<h1>Loading..</h1>):(
+            {loading ? (<h1>Loading..</h1>) : (
                 <div className='row'>
-                {
-                    characters.map(character => {
-                        return (
-                            <div className='col-md-4' key={character.id}>
-                                <Character  character={character}/>
-                            </div>
-                            
-                        )
-                    })
-                }
+                    {
+                        characters.map(character => {
+                            return (
+                                <div className='col-md-4' key={character.id}>
+                                    <Character character={character} />
+                                </div>
+
+                            )
+                        })
+                    }
                 </div>
             )
-                 
+
             }
-           
-           <NavPage page={page} setPage={setPage}/> 
+
+            <NavPage page={page} setPage={setPage} />
         </div>
 
     )
