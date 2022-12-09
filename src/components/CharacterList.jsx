@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Character from './Character';
 
 function NavPage(props) {
-    if (props.page > 1) {
+    if (props.page > 1 && props.page<44) {
         return (
             <header className='d-flex justify-content-between align-items-center'>
                 <p>
@@ -22,7 +22,7 @@ function NavPage(props) {
 
             </header>
         );
-    } else {
+    } else if(props.page<44) {
         return (
 
             <header className='d-flex justify-content-between align-items-center'>
@@ -30,9 +30,6 @@ function NavPage(props) {
                     Actual Page: {props.page}
                 </p>
                 <div>
-                    <button className='btn btn-primary btn-sm m-2' onClick={() => console.log("Entro")}>
-                        Page {props.page}
-                    </button>
                     <button className='btn btn-primary btn-sm m-2'
                         onClick={() => props.setPage(props.page + 1)}
                     >
@@ -44,6 +41,21 @@ function NavPage(props) {
             </header>
         );
 
+    }else{
+        return (
+
+            <header className='d-flex justify-content-between align-items-center'>
+                <p>
+                    Actual Page: {props.page}
+                </p>
+                <div>
+                <button className='btn btn-primary btn-sm m-2'
+                        onClick={() => props.setPage(props.page - 1)}>
+                        Page {props.page - 1}
+                    </button>
+                </div>
+            </header>
+        );
     }
 
 
